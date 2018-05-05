@@ -18,20 +18,23 @@ def clean_word(word):
 			select += 1
 		if(len(possibleMatches) < 1):
 			print("There was no possible matches, Try again:")
-			return toQuit
+			return (toQuit,definition)
 		# wait for user response
 		choice = input("A negative value to quit or a Choice? ")
-		intChoice = int(choice)
-		if (choice == ""):
-			 print( "Problem: the choice exceeded the available choices. Select again")
-		elif(intChoice > len(data.keys())):
-			print( "Problem: the choice exceeded the available choices. Select again")
-		elif(intChoice < 0):
-			return toQuit
+		if (choice.isdigit() == False):
+			print( "Problem: the choice exceeded the available choices. Select again")	
 		else:
-			newWord = possibleMatches[intChoice]
-			definition = data[newWord]
-			break
+			intChoice = int(choice)
+			if (choice == ""):
+				 print( "Problem: the choice exceeded the available choices. Select again")
+			elif(intChoice > len(data.keys())):
+				print( "Problem: the choice exceeded the available choices. Select again")
+			elif(intChoice < 0):
+				return (toQuit,definition)
+			else:
+				newWord = possibleMatches[intChoice]
+				definition = data[newWord]
+				break
 	return (newWord, definition)
 
 
@@ -51,8 +54,9 @@ if __name__ == "__main__":
 			if (word == 'stopApp'):
 				print('Stopping ....')
 				break
-			cleanWord, definition  = clean_word(word)
-			if( cleanWord != ""):
-				print("Found the definition of :",cleanWord)
-				print(definition[0])
+			if(word.isalpha() == True):
+				cleanWord, definition  = clean_word(word)
+				if( cleanWord != ""):
+					print("Found the definition of :",cleanWord)
+					print(definition[0])
 
