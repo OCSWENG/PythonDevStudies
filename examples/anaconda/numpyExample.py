@@ -88,6 +88,24 @@ resultsArray = npArray[boolArray]
 
 
 
+dataset = np.array([[2, 4, 6, 8, 3, 2, 5],
+					[7, 5, 3, 1, 6, 8, 0],
+					[1, 3, 2, 1, 0, 0, 8]])
+print (np.max(dataset, axis=1) ‐ np.min(dataset, axis=1))
+
+npArray = np.array([15.0, 20.0, 22.0, 75.0, 40.0, 35.0]) 
+npArray = npArray*.01
+
+
+array1 = np.array([2, 0, 0, 2]) 
+
+array2 = np.array([ [1, 2, 3, 4],
+					[2, 3, 4, 5],
+					[3, 4, 5, 6],
+					[4, 5, 6, 7]])
+
+array3 = np.dot(array1, array2)
+
 
 
 

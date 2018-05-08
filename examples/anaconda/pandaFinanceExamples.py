@@ -42,6 +42,8 @@ sum(bankDF['Bank Name'].apply(lambda name: len(name.split())==2))
 
 # pick the last two digits off of the date
 sum(bankDF['Closing Date'].apply(lambda date: date[-2:]) == '08')
+sum(pd.to_datetime(bankDF['Closing Date']).apply(lambda date: date.year >= 2008))
+
 
 
 

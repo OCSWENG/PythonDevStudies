@@ -298,7 +298,90 @@ df['newColumn1'] = df.groupby('Column1')['Column2'].transform(np.sum)
 df['newColumn2'] = df.groupby('Column1')['Column2'].transform(np.mean) 
 df['newColumn3'] = df.groupby('Column1')['Column2'].transform(np.var)
 
-# CHAPTER 7 SHAPING DATA
+
+# XPath for data extraction
+
+# from lxml import objectify
+# import pandas as pd
+# from distutils import util 
+xml = objectify.parse(open('XMLData.xml'))
+root = xml.getroot()
+
+data = zip(map(int, root.xpath('Record/Number')),
+		map(bool, map(util.strtobool, map(str, root.xpath('Record/Boolean')))))
+
+
+df = pd.DataFrame(data,
+	columns = ('Number', 'Boolean'),
+	index=map(str, root.xpath('Record/String')))
+
+print (type(df.ix['First']['Number']))
+print (type(df.ix['First']['Boolean']))
+print(df)
+
+
+
+# utilizing Date Time in Data Frames
+#
+#
+#from datetime import datetime
+#dateTimeArray = [datetime(2016, 1, 1), datetime(2016, 1, 2)]
+#dt_idx = pd.DatetimeIndex(dateTimeArray)
+#data = np.random.randn(2,2)
+#cols = ['A','B']
+#df = pd.DataFrame(data,dt_ind,cols)
+
+# Best way to read in data with time series index
+#df = pd.read_csv('data.csv',index_col='Date',parse_dates=True)
+# examine the Open points
+# df['Open'].plot(figsize=(25,5))
+
+# add a rolling mean to smooth out volatility
+# weekly 
+# df.rolling(5).mean().head(20)
+# monthly
+#df['Close: 30 Day Mean'] = df['Close'].rolling(window=30).mean()
+#df[['Close','Close: 30 Day Mean']].plot(figsize=(16,6))
+
+
+# Bollinger Bands reflect direction with the 20-period SMA and volatility with the upper/lower bands
+#df['Close: 30 Day Mean'] = df['Close'].rolling(window=20).mean()
+
+# bollinger Bands
+#df['UpBand'] = df['Close: 30 Day Mean'] + 2*df['Close'].rolling(window=20).std()
+#df['LowBand'] = df['Close: 30 Day Mean'] - 2*df['Close'].rolling(window=20).std()
+
+
+#df[['Close','Close: 30 Day Mean','UpBand','LowBand']].plot(figsize=(16,6))
+
+
+# Create a Date Index from the Date Column
+# df['Date'] = df['Date'].apply(pd.to_datetime)
+# df.set_index('Date',inplace=True)
+
+# Resampling
+# Codes:
+#B	business day freq
+#W	weekly freq
+#M	month end freq
+#Q	quarter end freq
+#A	Yearly end freq
+# mean, sum, count, any type of aggregation
+#df.resample(rule='A').mean()
+
+#df['Close'].resample('A').mean().plot(kind='bar')
+#plt.title('Yearly Mean Close Price for Equity')
+
+#df['Open'].resample('M').max().plot(kind='bar',figsize=(16,6))
+#plt.title('Monthly Max Opening Price for Equity')
+
+# shift time serries
+#df.shift(1).head()
+#df.shift(-1).head()
+# Forward shift 1 month
+# df.tshift(periods=1,freq='M').head()
+
+
 
 
 
