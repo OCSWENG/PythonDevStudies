@@ -6,6 +6,8 @@ import pandas
 # convert a list,numpy array, or dictionary to a Series()
 # stored procedures can be put into an array
 
+# https://pandas.pydata.org/pandas-docs/stable/api.html#id3
+
 # DataFrames are an array of Series
 
 
