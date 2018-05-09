@@ -1,0 +1,80 @@
+/* backround image and font-family to the body object */
+body {
+    background: skyblue center center no-repeat fixed;
+    
+    background-size: cover;
+    font-family: sans-serif, serif;
+    
+}
+
+#navbarCollapse ul li{
+    text-align: center;
+    background: transparent;
+    color: aliceblue;
+}
+
+.navbar-nav {
+  flex-flow: row nowrap;
+}
+
+.navbar {
+    flex-flow: row nowrap;
+    display: inline;
+}
+
+.navbar-inverse { /* transparent background */
+    background: rgba(0,0,0,0.5);   
+}
+
+.nav li {
+    color: white;
+    font-size: 17px;
+    margin-right: 35px;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.nav li a {
+    color: white;
+    text-decoration: none;
+}
+.nav li:hover {
+    border-bottom:  1px solid aqua;
+    text-decoration: none;
+}
+
+
+.btn {
+    background-color: white;
+    font-size: 18px;
+    color: grey;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 70px;
+    letter-spacing: 1.3px;
+}
+
+.btn:hover {
+     background-color: rgba(0,0,0,0.5);
+     color: white;
+     border: none;
+}
+
+.jumbotron {
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    margin: 0px;
+    letter-spacing: 2.5px;
+}
+
+/* Media queries to change the size of body icons for small devices */
+
+@media (max-width: 768px) {
+    .bodyimage{
+        height: 70px;
+        
+    }
+    
+}
