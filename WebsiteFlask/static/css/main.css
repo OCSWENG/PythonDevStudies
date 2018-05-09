@@ -1,0 +1,38 @@
+
+
+header {
+    background: skyblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+}
+.about {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.home {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+
+.menu {
+    background-color: transparent;
+    text-align: left;
+    color: black
+}
+
+
+.menu li {
+    color: black;
+}
+
+.menu li:hover {
+    color: white
+}
+
