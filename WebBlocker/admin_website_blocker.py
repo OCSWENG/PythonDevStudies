@@ -1,7 +1,7 @@
 import time
 from datetime import datetime as dt
 
-hosts_temp=r"hosts"
+hosts_temp=r"./hosts"
 # replace hosts_temp with hostPath then start the process in administration level 
 # sudo crontab -e 
 # @reboot python3 /home/dir1/dir2/dir3/admin_website_blocker.py
@@ -13,8 +13,6 @@ websiteList=["www.facebook.com","www.youtube.com","http://www.bbc.com","www.mail
 
 #list generation
 finalList = [redirect + ' ' + i for i in websiteList]
-finalStringBlock = '\n'.join(finalList)
-
 
 beginWorkHour = 8
 endWorkHour = 16
@@ -24,7 +22,7 @@ while True:
     endWorkTime = dt(dt.now().year,dt.now().month,dt.now().day, endWorkHour)
     
     # once work commences write to the host file to block websites.
-    if ( beginWorkTime < dt.now() < endWorkTime ) :
+    if ( beginWorkTime < dt.now() < endWorkTime ):
         # print("Work TimeFrame ...")
         
         with open(hosts_temp,'r+') as file:
