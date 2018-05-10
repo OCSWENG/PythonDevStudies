@@ -39,6 +39,8 @@ import pandas
 # df[df > 4]
 # 
 #df[(df['W']>0) & (df['Y'] > 1)]
+#df[df['W']>0][['A','B']]
+
 
 # setting new index
 # df.set_index('C5')
@@ -50,7 +52,10 @@ import pandas
 #inidx = [1,2,3,1,2,3]
 #index = list(zip(outIdx,inIdx))
 #index = pd.MultiIndex.from_tuples(index)
+# df = pd.DataFrame(randn(10,10), index,['a','b','c','d','e','f','g','h','i','j'])
+# Get all values under cross section of R1
 # df.xs('R1')
+# df.xs(1,level='Num')
 
 # getting rid of Nan
 # dropna
@@ -177,6 +182,13 @@ else:
 		for observation in open_file:
 			print 'Reading Data: ' + observation
 
+
+# SQL | EXCEL | HTML | CSV
+# LIBRARIES
+# sqlalchemy
+# lxml
+# html5lib
+# BeautifulSoup
 
 import pandas as panda
 Atable = panda.io.parsers.read_table("Dat.txt") 
