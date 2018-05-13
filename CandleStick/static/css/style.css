@@ -1,0 +1,108 @@
+/* Bordered form */
+form {
+    border: 3px solid white;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 25%;
+    padding: 12px 20px;
+    left: 50%;
+    margin: 10px auto;
+    text-align: center;
+    display:grid;
+    border: 1px solid black;
+    box-sizing: border-box;  
+}
+
+#tick {
+    position:relative;
+    margin: auto; 
+    top: 8%;
+    left: 25%;
+}
+
+#start {
+    position:relative;
+    margin: 1.em; 
+    top: 15%;
+    left: 25%;
+}
+
+#end {
+    position:relative;
+    margin: auto; 
+    top: 22%;
+    left: 25%;
+}
+
+#key {
+    position:relative;
+    margin: auto; 
+    top: 29%;
+    left: 25%;
+}
+/* Set a style for all buttons */
+button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: auto;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+.plotBtn {
+    background-color: black;
+    color: darkorange;
+    margin:auto;
+    position:relative;
+    top: 45%;
+    left: 25%;   
+    
+}
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+
+    background-color: red;
+    margin:auto;
+    position:relative;
+    float:left;
+    top: 45%;
+    left: 0%;
+}
+
+
+span.psw {
+    margin:auto;
+    position:relative;
+    top: 32%;
+    left: 50%;  
+}
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+
+/* The "Forgot password" text */
+span.psw {
+    float: left;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}

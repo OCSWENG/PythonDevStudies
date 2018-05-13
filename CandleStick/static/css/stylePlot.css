@@ -1,0 +1,25 @@
+body {
+    background: skyblue center center no-repeat fixed;
+    background-size: cover;
+    font-family: sans-serif, serif;   
+}
+
+
+
+
+.container {
+    align-content: center;
+    padding: 1.5em;
+}
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}

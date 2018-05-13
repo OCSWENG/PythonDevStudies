@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equity to Credit Cycle</title>
+    <meta charset="utf-8">
+    <meta name="viewport", content="width=device-width, initial-scale=1, user-scalable=yes">
+     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
+
+    
+</head>
+    <body>
+
+        <form action='/plot' method="post">
+
+          <div class="container">
+            <label id="tick" for="ticker" ><b>Ticker</b></label>
+            <input type="text" placeholder="Equity Symbol" name="ticker" required>
+
+            <label for="startDate" id="start"><b>StartDate</b></label>
+            <input type="text" placeholder="Start Date" name="startDate" required>
+
+            <label for="endDate" id="end"><b>EndDate</b></label>
+            <input type="text" placeholder="End Date" name="endDate" required>
+
+            <label for="quandlKey" id="key"><b>Quandl API KEY</b></label>
+            <input type="password" placeholder="Enter Quandl API KEY" name="quandlKey" required>  
+              
+            <button type="submit" class="plotBtn">PLOT</button>
+          </div>
+
+          <div class="container">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+          </div>
+        </form>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{{ url_for('static',filename='js/actions.js') }}"></script>
+    </body>
+</html>
