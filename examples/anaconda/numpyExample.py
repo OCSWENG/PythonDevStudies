@@ -107,6 +107,53 @@ array2 = np.array([ [1, 2, 3, 4],
 array3 = np.dot(array1, array2)
 
 
+# Section II
+
+# 10 Zeros
+np.zeros(10)
+
+np.ones(10)
+
+# array of 10 : 5
+np.ones(10) * 5
+np.zeros(10) + 5
+
+# array of Ints 10 to 50
+np.arrange(10,51,1)
+np.arrange(10,51,2)
+
+
+# create a 3x3 matrix from 0 - 8
+np.arrange(9).reshape((3,3))
+
+np.eye(3)
+
+np.random.rand(1)
+
+# random from standard normal distribution
+np.random.randn (25)
+
+
+# 2D 10x10 matrix 
+
+mat = np.linspace(0.01,1,100).reshape(10,10)
+
+
+# rows, columns
+mat[2:,7:]
+
+# sum of all values
+np.sum(mat)
+mat.sum()
+
+# standard deviation
+np.std(mat)
+mat.std()
+
+# sum of all columns
+mat.sum(axis=0)
+
+
 
 
 
