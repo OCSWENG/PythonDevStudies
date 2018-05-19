@@ -131,4 +131,151 @@ df['Lower'] = df['Close 20 DMA'] - 2*(df['Close 20 D STD'])
 
 df[['Close', 'Close 20 DMA','Upper','Lower']].tail(365).plot(figsize(25,5))
 
+# EWMA
+
+airline = pd.read_csv('airline.csv', index_col='Month')
+# clean up
+airline.dropna(inplace=True)
+airline.index=pd.to_datetime(airline.index)
+
+# SMA
+airline['6 MSMA'] = airline['Thousands of Passengers'].rolling(window=6)
+
+airline['12 MSMA'] = airline['Thousands of Passengers'].rolling(window=12)
+airline.plot(figsize(25,5))
+
+# EWMA
+# recent points have more weight
+
+airline['EWMA_12'] = airline['Thousands of Passengers'].ewm(span=12).mean()
+airline[['Thousands of Passengers', 'EWMA_12]].plot(figsize(14,7))
+
+# Alpha = ['span','center of mass','halfLife']
+# span is a period 
+# center of mass is inverse of span
+# halfLife is a period of time
+
+# ETS
+# Error , Trend, Seasonality
+airline = pd.read_csv('airline.csv', index_col='Month')
+# clean up
+airline.dropna(inplace=True)
+airline.index=pd.to_datetime(airline.index)
+
+# linear trend or exponential trend?
+from statsmodel.tsa.seasonal import seasonal_decompose
+result = seasonal_decompose(airline['Thousands of Passengers'], model='multiplicative')
+
+result.seasonal.plot()
+result.trend.plot()
+
+# result = seasonal_decompose(airline['Thousands of Passengers'], model='additive')
+
+result.plot() # to see observed , trend, seasonal, residual
+
+# portfolio study
+# Daily return
+# cumulative return
+# average daily return
+# std daily return
+# sharpe ratio risk adjusted return
+# 	mean daily return with std
+
+#	S = (Rp - Rf)/sigP
+
+# in 2018 Rf is about 1.5%
+# usually a yearly return
+# daily = k = sqrt(252)
+# weekly = k = sqrt(52)
+# montly = k = sqrt(12)
+
+# sqrt(252) * SharpeRatio
+
+
+import quandl
+
+start = pd.to_datetime('2012')
+end = pd.to_datetime('2017')
+
+aapl = quandl.get('WIKI/AAPL.11',start_date=start, end_date=end)
+cisco = quandl.get('WIKI/CSCO.11',start_date=start, end_date=end)
+ibm = quandl.get('WIKI/IBM.11',start_date=start, end_date=end)
+amzn= quandl.get('WIKI/AMZN.11',start_date=start, end_date=end)
+
+
+appl.iloc[0]['Adj. Close']
+
+for stock_df in (appl,cisco,ibm,amzn):
+	stock_df['Normalize Return'] = stock_df['Adj. Close']/stock_df.iloc[0]['Adj. Close']
+
+print(aapl.head())
+
+
+# 30% aaple
+# 20% cisco
+# 40% amazon
+# 10% ibm
+
+for stock_df, allo in zip((appl,cisco,ibm,amzn),[.3,.2,.4,.1]):
+	stock_df['Allocation'] = stock_df['Normalized Return']*allo
+
+print(aapl.head())
+investment = 1000000
+
+for stock_df in (appl,cisco,ibm,amzn):
+	stock_df['Postion Values'] = stock_df['Allocation'] * investment
+
+print(aapl.head())
+
+allPosVals = [aapl['Position Values'], csco['Position Values'],ibm['Position Values'],amzn['Position Values']]
+portfolioVal = pd.concat(allPossVals)
+
+portfolioVal.colums = ['AAPL Pos','CSCO Pos','IBM Pos','AMZN Pos']
+
+portfolioVal['Total Pos'] = portfolioVal.sum(axis=1)
+
+portfolioVal['Total pos'].plot(figsize(14,7))
+plt.title('Total Portfolio Value')
+
+portfolioVal.drop('Total Pos', axis=1).plot(figsize(14,7))
+
+portfolioVal['Daily Return'] = portfolioVal['Total Pos'].pct_change(1)
+
+portfolioVal['Daily Return'].mean()
+
+portfolioVal['Daily Return'].std()
+
+portfolioVal['Daily Return'].plot(kind='hist', bins=75, figsize=(4,6))
+
+portfolioVal['Daily Return'].plot(kind='kde',figsize=(4,6))
+
+cumulativeReturn = (portfolioVal['Total Pos'][-1] / portfolioVal['Total Pos'][0] -1) * 100
+
+sharpeRatio = portfolioVal['Daily Return'].mean()/portfolioVal['Daily Return'].std()
+
+annualizeSharpeRatio = sharpeRatio * sqrt(252)
+# (252**0.5) * SR
+
+# the higher the better
+# SR > 1, SR > 2, SR > 3
+
+
+# random guess and check is monte carlo simulation
+# calculate thousands of sharpe ratios for a set of equities.
+
+
+# optimization algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
 
